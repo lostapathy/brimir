@@ -207,7 +207,7 @@ class Ticket < ApplicationRecord
 
     def create_message_id_if_blank
       if self.message_id.blank?
-        self.message_id = Mail::MessageIdField.new.message_id
+        self.message_id = "#{Mail.random_tag}@#{Tenant.current_tenant.domain || Tenant.first.domain}"
         self.save!
       end
     end

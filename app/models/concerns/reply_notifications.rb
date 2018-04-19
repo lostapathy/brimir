@@ -163,7 +163,7 @@ concern :ReplyNotifications do
   #     reply.notification_mails.each(&:deliver_now)
   #
   def notification_mails
-    self.message_id = Mail::MessageIdField.new.message_id
+    self.message_id = "#{Mail.random_tag}@#{Tenant.current_tenant.domain || Tenant.first.domain}"
     self.save!
 
     notified_users.collect do |user|
