@@ -37,7 +37,7 @@ class AttachmentsController < ApplicationController
         send_file @attachment.file.path,
             filename: @attachment.file_file_name,
             type: @attachment.file_content_type,
-            disposition: :attachment
+            disposition: :inline
       end
     rescue
       raise ActiveRecord::RecordNotFound
