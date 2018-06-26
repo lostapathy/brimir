@@ -136,7 +136,7 @@ concern :ReplyNotifications do
       if ticket.assignee.present?
         result << ticket.assignee
       else
-        result = User.agents_to_notify
+        result = [] # User.agents_to_notify
       end
 
       ticket.labels.each do |label|
