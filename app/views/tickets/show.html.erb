@@ -137,10 +137,14 @@
      </div>
     </div>
 
+    <% if can? :create, @reply %>
+      <%= render 'replies/form', reply_to: @reply_to %>
+    <% end %>
+
     <% if @ticket.replies.size > 1 %>
       <div class="row replies">
-        <% @replies.each_with_index do |reply, index| %>
-          <% if @replies.count - 1 == index %>
+        <% @replies.reverse.each_with_index do |reply, index| %>
+          <% if 0 == index %>
             <% div_class = 'active' %>
           <% else %>
             <% div_class = '' %>
@@ -149,10 +153,6 @@
           <%= render reply, div_class: div_class %>
         <% end %>
       </div>
-    <% end %>
-
-    <% if can? :create, @reply %>
-      <%= render 'replies/form', reply_to: @reply_to %>
     <% end %>
   </div>
 </div>
